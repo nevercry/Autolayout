@@ -9,17 +9,27 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var loginField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        updateUI()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    var secure = false { didSet { updateUI() } }
+    
+    private func updateUI() {
+        passwordField.secureTextEntry = secure
+        passwordLabel.text = secure ? "Secured Password" : "Password"
     }
-
-
+    
+    @IBAction func login() {
+    }
+    @IBAction func toggleSecurity() {
+        secure = !secure
+    }
+    
 }
 
